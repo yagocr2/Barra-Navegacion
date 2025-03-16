@@ -1,0 +1,133 @@
+:root {
+    --color-primary: #7828aa;       /* Color principal (morado) */
+    --color-background: #222;       /* Color de fondo (gris oscuro) */
+    --color-navbar: #fff;           /* Color de la barra de navegación (blanco) */
+    --color-indicator: #f0f0f0;     /* Color del indicador (gris claro) */
+    --color-text: #222;             /* Color del texto (gris oscuro) */
+    --color-text-active: #fff;      /* Color del texto activo (blanco) */
+}
+
+/* Reset básico para todos los elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Estilo del cuerpo de la página, centrado vertical y horizontal */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--color-background);
+}
+
+/* Contenedor principal de la barra de navegación */
+.navbar {
+    position: relative;
+    width: 600px;
+    height: 4.38em;
+    background: var(--color-navbar);
+    border-radius: 10px;
+    box-shadow: 0 2em 3em .1em rgba(0, 0, 0, 0.500); /* Sombra para efecto de elevación */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Lista de elementos de navegación */
+.navbar ul {
+    display: flex;
+    width: 100%;
+    padding: 0; /* Elimina el padding para evitar desplazamientos */
+}
+
+/* Elementos individuales de navegación */
+.navbar ul li {
+    position: relative;
+    list-style: none;
+    width: 20%; /* Cada elemento ocupa exactamente 1/5 del ancho total */
+    height: 4.5em;
+    z-index: 2; /* Mayor que el indicador para recibir eventos de clic */
+}
+
+/* Enlaces dentro de los elementos de navegación */
+.navbar ul li a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+
+/* Iconos dentro de los enlaces */
+.navbar ul li a i {
+    position: relative;
+    display: block;
+    line-height: 2.5em;
+    font-size: 1.5em;
+    transition: .5s ; /* Transición suave para la animación */
+}
+
+/* Texto (span) dentro de los enlaces */
+.navbar ul li a span {
+    position: absolute;
+    font-size: 0.75em;
+    letter-spacing: 0.05em;
+    transition: 1s; /* Transición para la aparición del texto */
+    opacity: 0; /* Inicialmente invisible */
+    transform: translateY(20px);
+}
+
+/* Estilo del texto cuando el elemento está activo */
+.navbar ul li.active a span {
+    opacity: 1; /* Hace visible el texto */
+    transform: translateY(20px); /* Posiciona el texto debajo del icono */
+}
+
+/* Estilo del icono cuando el elemento está activo */
+.navbar ul li.active a i {
+    transform: translateY(-10px); /* Mueve el icono hacia arriba */
+    color: var(--color-text-active);
+}
+
+/* Indicador que se mueve para mostrar el elemento activo */
+.indicator {
+    position: absolute;
+    width: 20%; /* Exactamente 20% para coincidir con cada elemento */
+    height: 70px;
+    background: var(--color-indicator);
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+    z-index: 0; /* Detrás de los elementos de navegación */
+    transition: 1.25s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Transición con efecto rebote */
+}
+
+/* Círculo decorativo encima del indicador */
+.indicator::before {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    transition: .5s;
+}
+
+/* Color del texto del elemento activo */
+.navbar ul li.active a {
+    color: var(--color-primary);
+}
+
